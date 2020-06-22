@@ -19,9 +19,9 @@ import org.slf4j.LoggerFactory;
 import priv.mybatis.example01.dao.RoleMapper;
 import priv.mybatis.example01.domain.Role;
 
-public class MysqlTest {
+public class MysqlTest2 {
 	
-	private static final Logger log = LoggerFactory.getLogger(MysqlTest.class);;
+	private static final Logger log = LoggerFactory.getLogger(MysqlTest2.class);;
 
 	public static void main(String[] args) throws IOException {
 		String resource = "priv/mybatis/example01/mybatis-config.xml";
@@ -31,8 +31,7 @@ public class MysqlTest {
 		log.info("create sqlSessionFactory : {}.", sqlSessionFactory);
 		
 		SqlSession openSession = sqlSessionFactory.openSession();
-		RoleMapper mapper = openSession.getMapper(RoleMapper.class);
-		Role role = mapper.selectRole(1);
+		Role role = openSession.selectOne("priv.mybatis.example01.dao.RoleMapper.selectRole", 1);
 		log.info("print role: {}.", role);
 	}
 }
