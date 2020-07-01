@@ -12,6 +12,8 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 
+import priv.mybatis.example02.datasource.pooled.UnpooledSourceImpl;
+
 /** 
  * <p>Title: App.java</p>  
  * <p>Description: </p>  
@@ -26,7 +28,7 @@ public class App {
     	String password = "root";
     	
     	// 1. 使用数据源
-    	DataSource dataSource = new DataSourceImpl(driver, url, username, password);
+    	DataSource dataSource = new UnpooledSourceImpl(driver, url, username, password);
     	Connection connection = dataSource.getConnection();
     	// 3. Statement用以运行SQL语句。下面是一个插入（INSERT）的例子
 		Statement stmt = connection.createStatement();
